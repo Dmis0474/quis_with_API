@@ -1,3 +1,8 @@
 .question {
     margin: 10px 0;
 }
+
+.btn_result {
+    display: block;
+    margin-top: 10px;
+}

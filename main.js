@@ -24,17 +24,51 @@
             let button = document.createElement('button');
             button.className = "btn"
             button.onclick = "click22(this)"
-            
+            button.addEventListener("click", click22, false)
             button.innerHTML = `${item}`
             document.body.append(button);
         })
     })  
 
+    let arrAnswer = []
     function click22(event) {
-        var a = event.target;
-        alert(a)
-       }
+        let a = event.target.innerHTML;
+        arrAnswer.push(a)  
+        allQuestions.map((item, i) => {
+            item.userAnswer[0] =  arrAnswer[i]   
+            })
+        }
+
+
+      
+
+    function checkAnswer() {
+        let counter = 0;
+        allQuestions.map( item => {
+          if( item.correctAnswer.indexOf(item.userAnswer[0]) >= 0) {
+            counter++
+          }  
+        })
+        if(counter === 1) {
+            alert(`Молодец, ты дал ${counter} правильный ответ!`)   
+            }
+        if(counter === 2||counter === 3||counter === 4) {
+            alert(`Молодец, ты дал ${counter} правильных ответа!`)   
+            } 
+        if(counter === 5){
+        alert(`Молодец, ты дал ${counter} правильных ответов!`)
+        }
+    }
+
+    let buttonRes = document.createElement('button');
+    buttonRes.className = "btn_result"
+    buttonRes.onclick = "checkAnswer()"
+    buttonRes.addEventListener("click", checkAnswer, false)
+    buttonRes.innerHTML = "Accept"
+    document.body.append(buttonRes);
+
+    
+       
  
-    let eventBtn = document.getElementsByClassName("btn")
-    console.log(eventBtn)
-    eventBtn.addEventListener("click", click22, false);
+console.log(arrAnswer)
+console.log(allQuestions)
