@@ -1,0 +1,19 @@
+сделать приложение анкету
+
+- выводить по одному вопросу на странице
+- сделать конпки вперед назад
+- в конце показать результат
+
+данные брать на первом этапе из массива например. Структуру массива можно сделать другую.
+var allQuestions = [
+  {sequence: 1, question: "0. Who is Prime Minister of the United Kingdom?", choices: ["Theresa May", "Winston Churchill", "Tony Blair"], 
+  correctAnswer: ["Theresa May"], userAnswer: []},
+  {sequence: 2, question: "1. Which cities are located in the Great Britain?", choices: ["Paris", "Warsaw", "London", "Liverpool", "Budapest"], 
+  correctAnswer:["London", "Liverpool"], userAnswer: []},
+  {sequence: 3, question: "2. What is the capital of the Russian Federation?", choices: ["Prague", "Minsk", "Washington", "Moscow"], 
+  correctAnswer: ["Moscow"], userAnswer: []},
+  {sequence: 4, question: "3. Who was the first man in space", choices: ["Armstrong", "Leonov", "Titov", "Gagarin", "Gorbachev"], 
+  correctAnswer: ["Gagarin"], userAnswer: []},
+  {sequence: 5, question: "4. Who is the President of the USA", choices: ["Putin", "Psaki", "Clinton", "Obama"], 
+  correctAnswer: ["Obama"], userAnswer: []},
+];
