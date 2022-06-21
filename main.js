@@ -26,15 +26,25 @@
       let questionContainer = document.createElement('div')
       document.body.append(questionContainer);
       questionContainer.id = "cont"
-      questionContainer.inner = allQuestions[0].choices.map( item =>{
-          let button = document.createElement('button');
-          button.className = "btn"
-          button.onclick = "click22(this)"
-          button.addEventListener("click", click22, false)
-          button.innerHTML = `${item}`
-          questionContainer.appendChild(button);
+      questionContainer.inner = allQuestions[0].choices.map( (item, index)=>{
+          let input = document.createElement('input');
+          input.className = "btn"
+          input.onchange = click22
+          input.addEventListener("onchange", click22, false)
+          input.type = "radio"
+          input.id = `${item}id`
+          input.value = `${item}`
+          input.name = "inputOption"
+          questionContainer.appendChild(input);
+          let label = document.createElement('label')
+          label.innerHTML =`${item}`
+          label.for =`${item}id` 
+          questionContainer.appendChild(label);
+          
+
       })  
       
+     
 
 
 
@@ -59,13 +69,19 @@
     
         document.body.append(questionContainer);
         questionContainer.inner = allQuestions[indexQuestion].choices.map( item =>{
-          let button = document.createElement('button');
-          button.className = "btn"
-          button.onclick = "click22(this)"
-          button.id = "demo"
-          button.addEventListener("click", click22, false)
-          button.innerHTML = `${item}`
-          questionContainer.appendChild(button);
+            let input = document.createElement('input');
+            input.className = "btn"
+            input.onchange = click22
+            input.addEventListener("onchange", click22, false)
+            input.type = "radio"
+            input.id = `${item}id`
+            input.value = `${item}`
+            input.name = "inputOption"
+            questionContainer.appendChild(input);
+            let label = document.createElement('label')
+            label.innerHTML =`${item}`
+            label.for =`${item}id` 
+            questionContainer.appendChild(label);
          
       })  
            
@@ -92,33 +108,33 @@
     
         document.body.append(questionContainer);
         questionContainer.inner = allQuestions[indexQuestion].choices.map( item =>{
-          let button = document.createElement('button');
-          button.className = "btn"
-          button.onclick = "click22(this)"
-          button.id = "demo"
-          button.addEventListener("click", click22, false)
-          button.innerHTML = `${item}`
-          questionContainer.appendChild(button);
+            let input = document.createElement('input');
+            input.className = "btn"
+            input.onchange = click22
+            input.addEventListener("onchange", click22, false)
+            input.type = "radio"
+            input.id = `${item}id`
+            input.value = `${item}`
+            input.name = "inputOption"
+            questionContainer.appendChild(input);
+            let label = document.createElement('label')
+            label.innerHTML =`${item}`
+            label.for =`${item}id` 
+            questionContainer.appendChild(label);
          
       })  
     }
 
-   
-      
-
-    
-
-     
-       
-    
 
     let arrAnswer = []
     function click22(event) {
-        let a = event.target.innerHTML;
+        
+        let a = event.target.value;
         arrAnswer.push(a)  
         allQuestions.map((item, i) => {
             item.userAnswer[0] =  arrAnswer[i]   
             })
+        
         }
 
 
@@ -131,20 +147,10 @@
             counter++
           }  
         })
-        switch(counter) {
-            case 0:
-            alert (`Ты дал ${counter} правильных ответов!`)
-            break;
-            case 1:
-            alert (`Молодец, ты дал ${counter} правильный ответ!`)
-            break;
-            case 2, 3, 4:
-            alert(`Молодец, ты дал ${counter} правильных ответа!`) 
-            break;
-            case 5:
-            alert(`Молодец, ты дал ${counter} правильных ответов!`)    
-            break; 
-        }
+        let resultText = document.createElement('div');
+        resultText.className = "result";
+        resultText.innerHTML = `<p>Молодец! Правильных ответов: ${counter}!</p> `;
+        document.body.append(resultText);  
         
     }
 
