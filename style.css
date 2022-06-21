@@ -1,29 +1,26 @@
 .question {
-    position: absolute;
-    top: 20px;
-    left: 10px;
+  position: absolute;
+  top: 20px;
+  left: 10px;
 }
-
 
 .navigation {
-    position: relative;
-    top: 80px;
-    
-
+  position: relative;
+  top: 80px;
 }
 
-.navigation_sliders{
-    width: 377px;
-    display: flex;
-    justify-content: space-between;
+.navigation_sliders {
+  width: 377px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .btn_result {
-    display: block;
-    margin-top: 10px;
+  display: block;
+  margin-top: 10px;
 }
 
 .result {
-    position: absolute;
-    top: 150px;
+  position: absolute;
+  top: 150px;
 }
