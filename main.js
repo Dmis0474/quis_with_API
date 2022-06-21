@@ -12,23 +12,60 @@
         correctAnswer: ["Obama"], userAnswer: []},
       ];
 
-      
+      let indexQuestion = 0;
 
-      allQuestions.map( item => {
-        let div = document.createElement('div');
-        div.className = "question";
-        div.innerHTML = `<span>Номер вопроса${item.sequence}:</span> `;
-        div.innerHTML = `<span>Вопрос:${item.question}</span> `;
-        document.body.append(div);
-        item.choices.map( item =>{
+      
+    
+      let div = document.createElement('div');
+      div.className = "question";
+      div.innerHTML = `<span>Номер вопроса${allQuestions[0].sequence}:</span> `;
+      div.innerHTML = `<span>Вопрос:${allQuestions[0].question}</span> `;
+      document.body.append(div);
+      allQuestions[0].choices.map( item =>{
+          let button = document.createElement('button');
+          button.className = "btn"
+          button.onclick = "click22(this)"
+          button.addEventListener("click", click22, false)
+          button.innerHTML = `${item}`
+          document.body.append(button);
+      })  
+
+      function nextQuestion () {
+        ++indexQuestion
+        div.innerHTML = `<span>Номер вопроса${allQuestions[indexQuestion].sequence}:</span> `;
+        div.innerHTML = `<span>Вопрос:${allQuestions[indexQuestion].question}</span> `;
+        
+        allQuestions[indexQuestion].choices.map( item =>{
             let button = document.createElement('button');
             button.className = "btn"
             button.onclick = "click22(this)"
             button.addEventListener("click", click22, false)
             button.innerHTML = `${item}`
             document.body.append(button);
-        })
-    })  
+        })  
+         
+        }
+    
+      function previousQuestion () {
+        --indexQuestion
+        div.innerHTML = `<span>Номер вопроса${allQuestions[indexQuestion].sequence}:</span> `;
+        div.innerHTML = `<span>Вопрос:${allQuestions[indexQuestion].question}</span> `;
+        allQuestions[indexQuestion].choices.map( item =>{
+            let button = document.createElement('button');
+            button.className = "btn"
+            button.onclick = "click22(this)"
+            button.addEventListener("click", click22, false)
+            button.innerHTML = `${item}`
+            
+        }) 
+        }
+      
+
+    
+
+     
+       
+    
 
     let arrAnswer = []
     function click22(event) {
@@ -49,23 +86,23 @@
             counter++
           }  
         })
-        if(counter === 1) {
-            alert(`Молодец, ты дал ${counter} правильный ответ!`)   
-            }
-        if(counter === 2||counter === 3||counter === 4) {
-            alert(`Молодец, ты дал ${counter} правильных ответа!`)   
-            } 
-        if(counter === 5){
-        alert(`Молодец, ты дал ${counter} правильных ответов!`)
+        switch(counter) {
+            case 0:
+            alert (`Ты дал ${counter} правильных ответов!`)
+            break;
+            case 1:
+            alert (`Молодец, ты дал ${counter} правильный ответ!`)
+            break;
+            case 2, 3, 4:
+            alert(`Молодец, ты дал ${counter} правильных ответа!`) 
+            break;
+            case 5:
+            alert(`Молодец, ты дал ${counter} правильных ответов!`)    
+            break; 
         }
+        
     }
 
-    let buttonRes = document.createElement('button');
-    buttonRes.className = "btn_result"
-    buttonRes.onclick = "checkAnswer()"
-    buttonRes.addEventListener("click", checkAnswer, false)
-    buttonRes.innerHTML = "Accept"
-    document.body.append(buttonRes);
 
     
        

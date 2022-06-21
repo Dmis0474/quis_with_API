@@ -8,7 +8,15 @@
     <link href="./style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+ 
     
+ <div class ='navigation'>
+    <div class ='navigation_sliders'>
+<button className = "btn_slider" onclick = "nextQuestion()">Next</button>   
+<button className = "btn_slider" onclick = "previousQuestion()">Previous</button>  
+    </div>
+<button class = "btn_result" onclick = "checkAnswer()" addEventListener("click", checkAnswer, false)>Accept</button>
+</div>
 
 
 <script src="./main.js"> </script>

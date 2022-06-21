@@ -1,5 +1,21 @@
 .question {
-    margin: 10px 0;
+    position: absolute;
+    top: 20px;
+    left: 10px;
+}
+
+
+.navigation {
+    position: relative;
+    top: 80px;
+    
+
+}
+
+.navigation_sliders{
+    width: 377px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .btn_result {
