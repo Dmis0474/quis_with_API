@@ -8,14 +8,16 @@
     <link href="./style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-    
+    <span id="catQuest"></span> <br>
+    <span id="Question"></span>
     <div class ='navigation'>
         <div class ='navigation_sliders'>
             <button className = "btn_slider" onclick = "previousQuestion()">Previous</button>   
             <button className = "btn_slider" onclick = "nextQuestion()">Next</button>  
         </div>
-        <button class = "btn_result" onclick = "checkAnswer()" addEventListener("click", checkAnswer, false)>Accept</button>
+        <button class = "btn_result" id="get">Получить данные!</button>
     </div>
+    
 
 
 <script src="./main.js"> </script>

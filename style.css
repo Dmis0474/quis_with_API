@@ -1,12 +1,7 @@
-.question {
-  position: absolute;
-  top: 20px;
-  left: 10px;
-}
 
 .navigation {
   position: relative;
-  top: 80px;
+  top: 20px;
 }
 
 .navigation_sliders {
@@ -24,3 +19,5 @@
   position: absolute;
   top: 150px;
 }
+
+
