@@ -18,47 +18,92 @@
     
       let div = document.createElement('div');
       div.className = "question";
+      div.id = 'info'
       div.innerHTML = `<span>Номер вопроса${allQuestions[0].sequence}:</span> `;
       div.innerHTML = `<span>Вопрос:${allQuestions[0].question}</span> `;
       document.body.append(div);
-      allQuestions[0].choices.map( item =>{
+
+      let questionContainer = document.createElement('div')
+      document.body.append(questionContainer);
+      questionContainer.id = "cont"
+      questionContainer.inner = allQuestions[0].choices.map( item =>{
           let button = document.createElement('button');
           button.className = "btn"
           button.onclick = "click22(this)"
           button.addEventListener("click", click22, false)
           button.innerHTML = `${item}`
-          document.body.append(button);
+          questionContainer.appendChild(button);
       })  
+      
+
+
 
       function nextQuestion () {
+        if (indexQuestion >= 4) {
+            checkAnswer()
+          } 
+
+        let elementInfo = document.getElementById("info")
+        while (elementInfo.firstChild) {
+            elementInfo.removeChild(elementInfo.firstChild);
+        }
+        let elementButtons = document.getElementById("cont")
+        while (elementButtons.firstChild) {
+            elementButtons.removeChild(elementButtons.firstChild);
+        }
         ++indexQuestion
+   
         div.innerHTML = `<span>Номер вопроса${allQuestions[indexQuestion].sequence}:</span> `;
         div.innerHTML = `<span>Вопрос:${allQuestions[indexQuestion].question}</span> `;
-        
-        allQuestions[indexQuestion].choices.map( item =>{
-            let button = document.createElement('button');
-            button.className = "btn"
-            button.onclick = "click22(this)"
-            button.addEventListener("click", click22, false)
-            button.innerHTML = `${item}`
-            document.body.append(button);
-        })  
+        document.body.append(div);
+    
+        document.body.append(questionContainer);
+        questionContainer.inner = allQuestions[indexQuestion].choices.map( item =>{
+          let button = document.createElement('button');
+          button.className = "btn"
+          button.onclick = "click22(this)"
+          button.id = "demo"
+          button.addEventListener("click", click22, false)
+          button.innerHTML = `${item}`
+          questionContainer.appendChild(button);
          
-        }
+      })  
+           
+    }
     
       function previousQuestion () {
+        if (indexQuestion >= 4) {
+            alert('Подтвердите ответы нажав Accept')
+          } 
+
+        let elementInfo = document.getElementById("info")
+        while (elementInfo.firstChild) {
+            elementInfo.removeChild(elementInfo.firstChild);
+        }
+        let elementButtons = document.getElementById("cont")
+        while (elementButtons.firstChild) {
+            elementButtons.removeChild(elementButtons.firstChild);
+        }
         --indexQuestion
+   
         div.innerHTML = `<span>Номер вопроса${allQuestions[indexQuestion].sequence}:</span> `;
         div.innerHTML = `<span>Вопрос:${allQuestions[indexQuestion].question}</span> `;
-        allQuestions[indexQuestion].choices.map( item =>{
-            let button = document.createElement('button');
-            button.className = "btn"
-            button.onclick = "click22(this)"
-            button.addEventListener("click", click22, false)
-            button.innerHTML = `${item}`
-            
-        }) 
-        }
+        document.body.append(div);
+    
+        document.body.append(questionContainer);
+        questionContainer.inner = allQuestions[indexQuestion].choices.map( item =>{
+          let button = document.createElement('button');
+          button.className = "btn"
+          button.onclick = "click22(this)"
+          button.id = "demo"
+          button.addEventListener("click", click22, false)
+          button.innerHTML = `${item}`
+          questionContainer.appendChild(button);
+         
+      })  
+    }
+
+   
       
 
     
