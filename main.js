@@ -5,20 +5,20 @@ fetch(requestURL)
   .then((response) => response.json())
   .then((response) => {
     dataArr = response;
-    console.log(dataArr);
+    showInfo(dataArr);
   });
 
 let allCorrectAnswers = [];
 
-setTimeout(() => {
+function showInfo(data) {
   let spanCat = document.createElement("p");
-  spanCat.innerHTML = `Your category: ${dataArr[0].category}`;
+  spanCat.innerHTML = `Your category: ${data[0].category}`;
   document.querySelector("#questions_box").appendChild(spanCat);
   let spanQuest = document.createElement("p");
-  spanQuest.innerHTML = `Your question: ${dataArr[0].question}`;
+  spanQuest.innerHTML = `Your question: ${data[0].question}`;
   document.querySelector("#questions_box").appendChild(spanQuest);
-  let containerAllAnswers = [...dataArr[0].incorrectAnswers];
-  containerAllAnswers.push(dataArr[0].correctAnswer);
+  let containerAllAnswers = [...data[0].incorrectAnswers];
+  containerAllAnswers.push(data[0].correctAnswer);
   containerAllAnswers = containerAllAnswers.sort();
   console.log(containerAllAnswers);
   let buttonsDiv = document.createElement("div");
@@ -39,10 +39,10 @@ setTimeout(() => {
   });
   document.querySelector("#questions_box").appendChild(buttonsDiv);
   let arrCorrectAnswer = [];
-  dataArr.map((item) => arrCorrectAnswer.push(item.correctAnswer));
+  data.map((item) => arrCorrectAnswer.push(item.correctAnswer));
   console.log(arrCorrectAnswer);
   allCorrectAnswers = [...arrCorrectAnswer];
-}, 3000);
+}
 let indexQuestion = 0;
 
 let arrAnswer = [];
