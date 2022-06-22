@@ -1,5 +1,5 @@
+let dataArr;
 
-let d
 const xhr = new XMLHttpRequest();
 const requestURL = `https://the-trivia-api.com/api/questions`;
 xhr.open("GET", requestURL);
@@ -7,140 +7,170 @@ xhr.onreadystatechange = function () {
   if (xhr.readyState !== 4 || xhr.status !== 200) {
     return;
   } else {
-  const response = JSON.parse(xhr.response);
-  var dataArr = response
+    const response = JSON.parse(xhr.response);
+    dataArr = response;
+    console.log(dataArr);
   }
-  document.querySelector('#catQuest').innerHTML = `Ваша категория: ${dataArr[0].category}`;
-  document.querySelector('#Question').innerHTML = `Ваш вопрос: ${dataArr[0].question}`;
-  console.log(dataArr)
-  
 };
 xhr.send();
 
+let myPromise = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve(dataArr);
+  }, 3000);
+});
+
+let allCorrectAnswers =[]
+myPromise.then(
+  (result) => {
+    let spanCat = document.createElement("p");
+    spanCat.innerHTML = `Your category: ${dataArr[0].category}`;
+    document.querySelector("#questions_box").appendChild(spanCat);
+    let spanQuest = document.createElement("p");
+    spanQuest.innerHTML = `Your question: ${dataArr[0].question}`;
+    document.querySelector("#questions_box").appendChild(spanQuest);
+    let containerAllAnswers = [...dataArr[0].incorrectAnswers];
+    containerAllAnswers.push(dataArr[0].correctAnswer);
+    containerAllAnswers = containerAllAnswers.sort();
+    console.log(containerAllAnswers);
+    let buttonsDiv = document.createElement("div");
+    buttonsDiv.inner = containerAllAnswers.map((item, index) => {
+      let input = document.createElement("input");
+      input.className = "btn";
+      input.onchange = addAnswer;
+      input.addEventListener("onchange", addAnswer, false);
+      input.type = "radio";
+      input.id = `${item}id`;
+      input.value = `${item}`;
+      input.name = "inputOption";
+      buttonsDiv.appendChild(input);
+      let label = document.createElement("label");
+      label.innerHTML = `${item}`;
+      label.for = `${item}id`;
+      buttonsDiv.appendChild(label);
+    });
+    document.querySelector("#questions_box").appendChild(buttonsDiv);
+    let arrCorrectAnswer = [];
+    dataArr.map((item) => arrCorrectAnswer.push(item.correctAnswer));
+    console.log(arrCorrectAnswer);
+    allCorrectAnswers = [...arrCorrectAnswer]
+  },
+  (error) => {
+    console.log("error");
+  }
+);
 
 let indexQuestion = 0;
 
+let arrAnswer = [];
+
+function addAnswer(event) {
+  let a = event.target.value;
+  arrAnswer.push(a);
+}
+
+console.log(arrAnswer);
 
 
-// let questionContainer = document.createElement("div");
-// document.body.append(questionContainer);
-// questionContainer.id = "cont";
-// questionContainer.inner = allQuestions[0].choices.map((item, index) => {
-//   let input = document.createElement("input");
-//   input.className = "btn";
-//   input.onchange = addAnswer;
-//   input.addEventListener("onchange", addAnswer, false);
-//   input.type = "radio";
-//   input.id = `${item}id`;
-//   input.value = `${item}`;
-//   input.name = "inputOption";
-//   questionContainer.appendChild(input);
-//   let label = document.createElement("label");
-//   label.innerHTML = `${item}`;
-//   label.for = `${item}id`;
-//   questionContainer.appendChild(label);
-// });
+document.querySelector("#next").addEventListener("click", nextQuestion, false)
+document.querySelector("#prev").addEventListener("click", previousQuestion, false)
 
-// function nextQuestion() {
-//   if (indexQuestion >= 4) {
-//     checkAnswer();
-//   }
+function nextQuestion() {
+  if (indexQuestion >= dataArr.length) {
+    checkAnswer();
+  }
 
-//   let elementInfo = document.getElementById("info");
-//   while (elementInfo.firstChild) {
-//     elementInfo.removeChild(elementInfo.firstChild);
-//   }
-//   let elementButtons = document.getElementById("cont");
-//   while (elementButtons.firstChild) {
-//     elementButtons.removeChild(elementButtons.firstChild);
-//   }
-//   ++indexQuestion;
+  let elementInfo = document.getElementById("questions_box");
+  while (elementInfo.firstChild) {
+    elementInfo.removeChild(elementInfo.firstChild);
+  }
+  
+  ++indexQuestion
 
-//   div.innerHTML = `<span>Номер вопроса${allQuestions[indexQuestion].sequence}:</span> `;
-//   div.innerHTML = `<span>Вопрос:${allQuestions[indexQuestion].question}</span> `;
-//   document.body.append(div);
+  let spanCat = document.createElement("p");
+  spanCat.innerHTML = `Your category: ${dataArr[indexQuestion].category}`;
+  document.querySelector("#questions_box").appendChild(spanCat);
+  let spanQuest = document.createElement("p");
+  spanQuest.innerHTML = `Your question: ${dataArr[indexQuestion].question}`;
+  document.querySelector("#questions_box").appendChild(spanQuest);
+  let containerAllAnswers = [...dataArr[indexQuestion].incorrectAnswers];
+  containerAllAnswers.push(dataArr[indexQuestion].correctAnswer);
+  containerAllAnswers = containerAllAnswers.sort();
+  console.log(containerAllAnswers);
+  let buttonsDiv = document.createElement("div");
+  buttonsDiv.inner = containerAllAnswers.map((item, index) => {
+    let input = document.createElement("input");
+    input.className = "btn";
+    input.onchange = addAnswer;
+    input.addEventListener("onchange", addAnswer, false);
+    input.type = "radio";
+    input.id = `${item}id`;
+    input.value = `${item}`;
+    input.name = "inputOption";
+    buttonsDiv.appendChild(input);
+    let label = document.createElement("label");
+    label.innerHTML = `${item}`;
+    label.for = `${item}id`;
+    buttonsDiv.appendChild(label);
+    document.querySelector("#questions_box").appendChild(buttonsDiv);
+  });
+}
 
-//   document.body.append(questionContainer);
-//   questionContainer.inner = allQuestions[indexQuestion].choices.map((item) => {
-//     let input = document.createElement("input");
-//     input.className = "btn";
-//     input.onchange = addAnswer;
-//     input.addEventListener("onchange", addAnswer, false);
-//     input.type = "radio";
-//     input.id = `${item}id`;
-//     input.value = `${item}`;
-//     input.name = "inputOption";
-//     questionContainer.appendChild(input);
-//     let label = document.createElement("label");
-//     label.innerHTML = `${item}`;
-//     label.for = `${item}id`;
-//     questionContainer.appendChild(label);
-//   });
-// }
+function previousQuestion() {
+  if (indexQuestion >= dataArr.length) {
+    checkAnswer();
+  }
 
-// function previousQuestion() {
-//   if (indexQuestion >= 4) {
-//     alert("Подтвердите ответы нажав Accept");
-//   }
+  let elementInfo = document.getElementById("questions_box");
+  while (elementInfo.firstChild) {
+    elementInfo.removeChild(elementInfo.firstChild);
+  }
+  
+  --indexQuestion
 
-//   let elementInfo = document.getElementById("info");
-//   while (elementInfo.firstChild) {
-//     elementInfo.removeChild(elementInfo.firstChild);
-//   }
-//   let elementButtons = document.getElementById("cont");
-//   while (elementButtons.firstChild) {
-//     elementButtons.removeChild(elementButtons.firstChild);
-//   }
-//   --indexQuestion;
+  let spanCat = document.createElement("p");
+  spanCat.innerHTML = `Your category: ${dataArr[indexQuestion].category}`;
+  document.querySelector("#questions_box").appendChild(spanCat);
+  let spanQuest = document.createElement("p");
+  spanQuest.innerHTML = `Your question: ${dataArr[indexQuestion].question}`;
+  document.querySelector("#questions_box").appendChild(spanQuest);
+  let containerAllAnswers = [...dataArr[indexQuestion].incorrectAnswers];
+  containerAllAnswers.push(dataArr[indexQuestion].correctAnswer);
+  containerAllAnswers = containerAllAnswers.sort();
+  console.log(containerAllAnswers);
+  let buttonsDiv = document.createElement("div");
+  buttonsDiv.inner = containerAllAnswers.map((item, index) => {
+    let input = document.createElement("input");
+    input.className = "btn";
+    input.onchange = addAnswer;
+    input.addEventListener("onchange", addAnswer, false);
+    input.type = "radio";
+    input.id = `${item}id`;
+    input.value = `${item}`;
+    input.name = "inputOption";
+    buttonsDiv.appendChild(input);
+    let label = document.createElement("label");
+    label.innerHTML = `${item}`;
+    label.for = `${item}id`;
+    buttonsDiv.appendChild(label);
+    document.querySelector("#questions_box").appendChild(buttonsDiv);
+  });
+}
 
-//   div.innerHTML = `<span>Номер вопроса${allQuestions[indexQuestion].sequence}:</span> `;
-//   div.innerHTML = `<span>Вопрос:${allQuestions[indexQuestion].question}</span> `;
-//   document.body.append(div);
+document.querySelector("#get").addEventListener("click", checkAnswer, false)
 
-//   document.body.append(questionContainer);
-//   questionContainer.inner = allQuestions[indexQuestion].choices.map((item) => {
-//     let input = document.createElement("input");
-//     input.className = "btn";
-//     input.onchange = addAnswer;
-//     input.addEventListener("onchange", addAnswer, false);
-//     input.type = "radio";
-//     input.id = `${item}id`;
-//     input.value = `${item}`;
-//     input.name = "inputOption";
-//     questionContainer.appendChild(input);
-//     let label = document.createElement("label");
-//     label.innerHTML = `${item}`;
-//     label.for = `${item}id`;
-//     questionContainer.appendChild(label);
-//   });
-// }
-
-// let arrCorrectAnswer = [];
-// allQuestions.map((item) => arrCorrectAnswer.push(...item.correctAnswer));
-// console.log(arrCorrectAnswer);
-
-// let arrAnswer = [];
-
-// function addAnswer(event) {
-//   let a = event.target.value;
-//   arrAnswer.push(a);
-//   allQuestions.map((item, i) => {
-//     item.userAnswer[0] = arrAnswer[i];
-//   });
-// }
-
-// function checkAnswer() {
-//   let counter = 0;
-//   allQuestions.map((item) => {
-//     if (arrCorrectAnswer.indexOf(item.userAnswer[0]) >= 0) {
-//       counter++;
-//     }
-//   });
-//   let resultText = document.createElement("div");
-//   resultText.className = "result";
-//   resultText.innerHTML = `<p>Молодец! Правильных ответов: ${counter}!</p> `;
-//   document.body.append(resultText);
-// }
+function checkAnswer() {
+  let counter = 0;
+  arrAnswer.map((item) => {
+    if (allCorrectAnswers.indexOf(item) >= 0) {
+      counter++;
+    }
+  });
+  let resultText = document.createElement("div");
+  resultText.className = "result";
+  resultText.innerHTML = `<p>Cool! Correct Answers: ${counter}!</p> `;
+  document.body.append(resultText);
+}
 
 // console.log(arrAnswer);
 // console.log(allQuestions);

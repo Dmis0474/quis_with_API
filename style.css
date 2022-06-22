@@ -1,8 +1,8 @@
-
-.navigation {
-  position: relative;
-  top: 20px;
+.questions_box {
+  display: block;
+  margin-bottom: 10px;
 }
+
 
 .navigation_sliders {
   width: 377px;
@@ -19,5 +19,3 @@
   position: absolute;
   top: 150px;
 }
-
-

@@ -1,25 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link href="./style.css" rel="stylesheet" type="text/css">
-</head>
-<body>
-    <span id="catQuest"></span> <br>
-    <span id="Question"></span>
-    <div class ='navigation'>
-        <div class ='navigation_sliders'>
-            <button className = "btn_slider" onclick = "previousQuestion()">Previous</button>   
-            <button className = "btn_slider" onclick = "nextQuestion()">Next</button>  
-        </div>
-        <button class = "btn_result" id="get">Получить данные!</button>
+    <link href="./style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class="questions_box" id="questions_box"></div>
+    <div class="navigation">
+      <div class="navigation_sliders">
+        <button className="btn_slider" id='prev' onclick="previousQuestion()">Previous</button>
+        <button className="btn_slider" id='next' onclick="nextQuestion()">Next</button>
+      </div>
+      <button class="btn_result" id="get">Show correct answers!</button>
     </div>
-    
 
-
-<script src="./main.js"> </script>
-</body>
+    <script src="./main.js"></script>
+  </body>
 </html>
