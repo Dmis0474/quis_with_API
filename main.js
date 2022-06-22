@@ -1,15 +1,34 @@
 let dataArr;
 
+const loader = document.querySelector(".preloader")
+
+function displayLoading() {
+  loader.classList.add("display")
+  
+}
+
+function hideLoading() {
+  loader.classList.remove("display")
+}
+
+
+
 const requestURL = `https://the-trivia-api.com/api/questions`;
+displayLoading()
 fetch(requestURL)
   .then((response) => response.json())
   .then((response) => {
     dataArr = response;
     showInfo(dataArr);
+    hideLoading()
   });
+   
+  
+
+
+
 
 let allCorrectAnswers = [];
-
 function showInfo(data) {
   let spanCat = document.createElement("p");
   spanCat.innerHTML = `Your category: ${data[0].category}`;
