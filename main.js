@@ -1,64 +1,46 @@
 let dataArr;
 
-const xhr = new XMLHttpRequest();
 const requestURL = `https://the-trivia-api.com/api/questions`;
-xhr.open("GET", requestURL);
-xhr.onreadystatechange = function () {
-  if (xhr.readyState !== 4 || xhr.status !== 200) {
-    return;
-  } else {
-    const response = JSON.parse(xhr.response);
+fetch(requestURL)
+  .then((response) => response.json())
+  .then((response) => {
     dataArr = response;
     console.log(dataArr);
-  }
-};
-xhr.send();
+  });
 
-let myPromise = new Promise((resolve, reject) => {
-  setTimeout(() => {
-    resolve(dataArr);
-  }, 3000);
+let allCorrectAnswers = [];
+
+let spanCat = document.createElement("p");
+spanCat.innerHTML = `Your category: ${dataArr[0].category}`;
+document.querySelector("#questions_box").appendChild(spanCat);
+let spanQuest = document.createElement("p");
+spanQuest.innerHTML = `Your question: ${dataArr[0].question}`;
+document.querySelector("#questions_box").appendChild(spanQuest);
+let containerAllAnswers = [...dataArr[0].incorrectAnswers];
+containerAllAnswers.push(dataArr[0].correctAnswer);
+containerAllAnswers = containerAllAnswers.sort();
+console.log(containerAllAnswers);
+let buttonsDiv = document.createElement("div");
+buttonsDiv.inner = containerAllAnswers.map((item, index) => {
+  let input = document.createElement("input");
+  input.className = "btn";
+  input.onchange = addAnswer;
+  input.addEventListener("onchange", addAnswer, false);
+  input.type = "radio";
+  input.id = `${item}id`;
+  input.value = `${item}`;
+  input.name = "inputOption";
+  buttonsDiv.appendChild(input);
+  let label = document.createElement("label");
+  label.innerHTML = `${item}`;
+  label.for = `${item}id`;
+  buttonsDiv.appendChild(label);
 });
-
-let allCorrectAnswers =[]
-myPromise.then(
-  (result) => {
-    let spanCat = document.createElement("p");
-    spanCat.innerHTML = `Your category: ${dataArr[0].category}`;
-    document.querySelector("#questions_box").appendChild(spanCat);
-    let spanQuest = document.createElement("p");
-    spanQuest.innerHTML = `Your question: ${dataArr[0].question}`;
-    document.querySelector("#questions_box").appendChild(spanQuest);
-    let containerAllAnswers = [...dataArr[0].incorrectAnswers];
-    containerAllAnswers.push(dataArr[0].correctAnswer);
-    containerAllAnswers = containerAllAnswers.sort();
-    console.log(containerAllAnswers);
-    let buttonsDiv = document.createElement("div");
-    buttonsDiv.inner = containerAllAnswers.map((item, index) => {
-      let input = document.createElement("input");
-      input.className = "btn";
-      input.onchange = addAnswer;
-      input.addEventListener("onchange", addAnswer, false);
-      input.type = "radio";
-      input.id = `${item}id`;
-      input.value = `${item}`;
-      input.name = "inputOption";
-      buttonsDiv.appendChild(input);
-      let label = document.createElement("label");
-      label.innerHTML = `${item}`;
-      label.for = `${item}id`;
-      buttonsDiv.appendChild(label);
-    });
-    document.querySelector("#questions_box").appendChild(buttonsDiv);
-    let arrCorrectAnswer = [];
-    dataArr.map((item) => arrCorrectAnswer.push(item.correctAnswer));
-    console.log(arrCorrectAnswer);
-    allCorrectAnswers = [...arrCorrectAnswer]
-  },
-  (error) => {
-    console.log("error");
-  }
-);
+document.querySelector("#questions_box").appendChild(buttonsDiv);
+let arrCorrectAnswer = [];
+dataArr.map((item) => arrCorrectAnswer.push(item.correctAnswer));
+console.log(arrCorrectAnswer);
+allCorrectAnswers = [...arrCorrectAnswer];
 
 let indexQuestion = 0;
 
@@ -71,9 +53,10 @@ function addAnswer(event) {
 
 console.log(arrAnswer);
 
-
-document.querySelector("#next").addEventListener("click", nextQuestion, false)
-document.querySelector("#prev").addEventListener("click", previousQuestion, false)
+document.querySelector("#next").addEventListener("click", nextQuestion, false);
+document
+  .querySelector("#prev")
+  .addEventListener("click", previousQuestion, false);
 
 function nextQuestion() {
   if (indexQuestion >= dataArr.length) {
@@ -84,8 +67,8 @@ function nextQuestion() {
   while (elementInfo.firstChild) {
     elementInfo.removeChild(elementInfo.firstChild);
   }
-  
-  ++indexQuestion
+
+  ++indexQuestion;
 
   let spanCat = document.createElement("p");
   spanCat.innerHTML = `Your category: ${dataArr[indexQuestion].category}`;
@@ -125,8 +108,8 @@ function previousQuestion() {
   while (elementInfo.firstChild) {
     elementInfo.removeChild(elementInfo.firstChild);
   }
-  
-  --indexQuestion
+
+  --indexQuestion;
 
   let spanCat = document.createElement("p");
   spanCat.innerHTML = `Your category: ${dataArr[indexQuestion].category}`;
@@ -157,7 +140,7 @@ function previousQuestion() {
   });
 }
 
-document.querySelector("#get").addEventListener("click", checkAnswer, false)
+document.querySelector("#get").addEventListener("click", checkAnswer, false);
 
 function checkAnswer() {
   let counter = 0;
