@@ -1,13 +1,88 @@
+*{
+  font-family: 'Poppins', sans-serif;
+  
+}
+
+p {
+  color: #fff;
+  font-size: 25px;
+  line-height: 28,5px;
+}
+
+body {
+  position: absolute;
+  max-height: 840px;
+  left: 0%;
+  right: 0%;
+  top: 0px;
+  background: url(./img/background.jpg), #999999;
+  border-radius: 0px;
+  
+}
+
+.question_container{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  flex-direction: column;
+    margin: 100px auto;
+    max-width: 630px;
+   
+  
+}
+
+.question_bacground {
+  position: absolute;
+  height: 400.67px;
+  left: 32.8%;
+  right: 32.57%;
+  top: 100px;
+  z-index: 0;
+ 
+}
+
 .questions_box {
   display: block;
   margin-bottom: 10px;
+  z-index: 1;
+  text-align: center;
+ 
+}
+
+.buttons_box {
+  display:flex;
+  justify-content: center;
+}
+
+.navigation {
+  z-index: 1;
+  width: 100%;
+}
+
+.btn_result {
+  display: block;
+}
+
+.options {
+  color: #fff;
 }
 
 
 .navigation_sliders {
-  width: 377px;
   display: flex;
   justify-content: space-between;
+  
+}
+
+.btn_slider {
+  height: 56px;
+  width: 154px;
+  left: 0%;
+  right: 0%;
+  top: 0.5px;
+  background: #fd8558;
+  border-radius: 0px;
 }
 
 .btn_result {
@@ -27,9 +102,9 @@
   width: 100%;
   height: 100%;
   z-index: 9999;
-  background-image: url('https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif?20151024034921');
-  background-repeat: no-repeat; 
-  background-color: #FFF;
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif?20151024034921");
+  background-repeat: no-repeat;
+  background-color: #fff;
   background-position: center;
   visibility: hidden;
 }

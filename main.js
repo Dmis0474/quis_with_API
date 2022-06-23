@@ -31,16 +31,17 @@ fetch(requestURL)
 let allCorrectAnswers = [];
 function showInfo(data) {
   let spanCat = document.createElement("p");
-  spanCat.innerHTML = `Your category: ${data[0].category}`;
+  spanCat.innerHTML = `Your category:<br> ${data[0].category}`;
   document.querySelector("#questions_box").appendChild(spanCat);
   let spanQuest = document.createElement("p");
-  spanQuest.innerHTML = `Your question: ${data[0].question}`;
+  spanQuest.innerHTML = `Your question:<br> ${data[0].question}`;
   document.querySelector("#questions_box").appendChild(spanQuest);
   let containerAllAnswers = [...data[0].incorrectAnswers];
   containerAllAnswers.push(data[0].correctAnswer);
   containerAllAnswers = containerAllAnswers.sort();
   console.log(containerAllAnswers);
   let buttonsDiv = document.createElement("div");
+  buttonsDiv.className = 'buttons_box';
   buttonsDiv.inner = containerAllAnswers.map((item, index) => {
     let input = document.createElement("input");
     input.className = "btn";
@@ -53,6 +54,7 @@ function showInfo(data) {
     buttonsDiv.appendChild(input);
     let label = document.createElement("label");
     label.innerHTML = `${item}`;
+    label.className = "options";
     label.for = `${item}id`;
     buttonsDiv.appendChild(label);
   });
@@ -91,10 +93,10 @@ function nextQuestion() {
   ++indexQuestion;
 
   let spanCat = document.createElement("p");
-  spanCat.innerHTML = `Your category: ${dataArr[indexQuestion].category}`;
+  spanCat.innerHTML = `Your category:<br> ${dataArr[indexQuestion].category}`;
   document.querySelector("#questions_box").appendChild(spanCat);
   let spanQuest = document.createElement("p");
-  spanQuest.innerHTML = `Your question: ${dataArr[indexQuestion].question}`;
+  spanQuest.innerHTML = `Your question:<br> ${dataArr[indexQuestion].question}`;
   document.querySelector("#questions_box").appendChild(spanQuest);
   let containerAllAnswers = [...dataArr[indexQuestion].incorrectAnswers];
   containerAllAnswers.push(dataArr[indexQuestion].correctAnswer);
@@ -113,6 +115,7 @@ function nextQuestion() {
     buttonsDiv.appendChild(input);
     let label = document.createElement("label");
     label.innerHTML = `${item}`;
+    label.className = "options";
     label.for = `${item}id`;
     buttonsDiv.appendChild(label);
     document.querySelector("#questions_box").appendChild(buttonsDiv);
@@ -132,10 +135,10 @@ function previousQuestion() {
   --indexQuestion;
 
   let spanCat = document.createElement("p");
-  spanCat.innerHTML = `Your category: ${dataArr[indexQuestion].category}`;
+  spanCat.innerHTML = `Your category:<br> ${dataArr[indexQuestion].category}`;
   document.querySelector("#questions_box").appendChild(spanCat);
   let spanQuest = document.createElement("p");
-  spanQuest.innerHTML = `Your question: ${dataArr[indexQuestion].question}`;
+  spanQuest.innerHTML = `Your question:<br> ${dataArr[indexQuestion].question}`;
   document.querySelector("#questions_box").appendChild(spanQuest);
   let containerAllAnswers = [...dataArr[indexQuestion].incorrectAnswers];
   containerAllAnswers.push(dataArr[indexQuestion].correctAnswer);
@@ -154,6 +157,7 @@ function previousQuestion() {
     buttonsDiv.appendChild(input);
     let label = document.createElement("label");
     label.innerHTML = `${item}`;
+    label.className = "options";
     label.for = `${item}id`;
     buttonsDiv.appendChild(label);
     document.querySelector("#questions_box").appendChild(buttonsDiv);

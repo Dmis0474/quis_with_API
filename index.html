@@ -6,16 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link href="./style.css" rel="stylesheet" type="text/css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div class="preloader"></div>
-    <div class="questions_box" id="questions_box"></div>
-    <div class="navigation">
-      <div class="navigation_sliders">
-        <button className="btn_slider" id='prev' onclick="previousQuestion()">Previous</button>
-        <button className="btn_slider" id='next' onclick="nextQuestion()">Next</button>
+    <div class="question_container">
+      
+      <div class="questions_box" id="questions_box"></div>
+      <div class="navigation">
+        <div class="navigation_sliders">
+          <button class="btn_slider" id="prev" onclick="previousQuestion()">
+            Previous
+          </button>
+          <button class="btn_slider" id="next" onclick="nextQuestion()">
+            Next
+          </button>
+        </div>
+        <button class="btn_result" id="get">Show correct answers!</button>
       </div>
-      <button class="btn_result" id="get">Show correct answers!</button>
+      <img class="question_bacground" src="./img/Frame.png" />
     </div>
 
     <script src="./main.js"></script>
