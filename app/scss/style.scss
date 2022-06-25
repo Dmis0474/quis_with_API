@@ -2,24 +2,20 @@ $primary-text-color: #fff;
 $font-stack: "Poppins", sans-serif;
 
 
-* {
-    font-family: $font-stack;
-  }
+
   
-  p {
-    color: $primary-text-color;
-    font-size: 20px;
-    line-height: 23,5px;
-  }
+  
   
   body {
+    font-family: $font-stack;
     position: absolute;
     max-height: 840px;
     left: 0%;
     right: 0%;
     top: 0px;
-    background-image: url(../img/background.jpg);
+    background-image: url(/img/background.jpg);
     border-radius: 0px;
+    overflow: hidden;
   }
   
   .question__container {
@@ -29,9 +25,26 @@ $font-stack: "Poppins", sans-serif;
     flex-direction: column;
     margin: 100px auto;
     max-width: 630px;
+
+  }
+
+   
+  .question__section {
+    display: block;
+    margin-bottom: 10px;
+    z-index: 1;
+    text-align: center;
+    height: 300px;
+    p {
+      color: $primary-text-color;
+      font-size: 20px;
+      line-height: 23,5px;
+      margin-bottom: 20px;
+    }
   }
   
-  .question__container--background {
+
+  .question__img {
     position: absolute;
     height: 400.67px;
     left: 32.8%;
@@ -39,38 +52,25 @@ $font-stack: "Poppins", sans-serif;
     top: 100px;
     z-index: 0;
   }
+ 
   
-  .question__section {
-    display: block;
-    margin-bottom: 10px;
-    z-index: 1;
-    text-align: center;
-    height: 300px;
-  }
-  
-  .button__section {
-    display: flex;
-    justify-content: space-around;
-  }
   
   .navigation {
     z-index: 1;
     width: 100%;
+    
+    &__sliders {
+      display: flex;
+      justify-content: space-between;
+    }
+    
   }
-  
-  .navigation__button--result {
-    display: block;
-  }
-  
-  .options {
-    color: $primary-text-color;
-  }
-  
-  .navigation__sliders {
+
+  .button__section {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
   }
-  
+
   .navigation__button--previous,
   .navigation__button--next,
   .navigation__button--result {
@@ -84,8 +84,9 @@ $font-stack: "Poppins", sans-serif;
     color: $primary-text-color;
     font-size: 15px;
     &:hover {
-        color: black;
+        background-color: black;
     }
+    
   }
   
   .navigation__button--result {
@@ -94,11 +95,15 @@ $font-stack: "Poppins", sans-serif;
     width: auto;
     padding: 13px 38px;
   }
+ 
   
-  .result {
-    position: absolute;
-    top: 150px;
+  .options {
+    color: $primary-text-color;
   }
+  
+  
+  
+  
   
   .preloader {
     position: absolute;
@@ -114,7 +119,4 @@ $font-stack: "Poppins", sans-serif;
     visibility: hidden;
   }
   
-  .display {
-    visibility: visible;
-  }
   
