@@ -1,122 +1,246 @@
 $primary-text-color: #fff;
 $font-stack: "Poppins", sans-serif;
 
+body {
+  font-family: $font-stack;
+  color: $primary-text-color;
+  position: absolute;
+  max-height: 840px;
+  left: 0%;
+  right: 0%;
+  top: 0px;
+  background-image: url(/img/background.jpg);
+  border-radius: 0px;
+  overflow: hidden;
+}
 
-
-  
-  
-  
-  body {
-    font-family: $font-stack;
-    position: absolute;
-    max-height: 840px;
-    left: 0%;
-    right: 0%;
-    top: 0px;
-    background-image: url(/img/background.jpg);
-    border-radius: 0px;
-    overflow: hidden;
-  }
-  
-  .question__container {
+.question {
+  &__container {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     margin: 100px auto;
     max-width: 630px;
-
   }
 
-   
-  .question__section {
+  &__section {
     display: block;
     margin-bottom: 10px;
     z-index: 1;
     text-align: center;
     height: 300px;
+    &--options {
+      display: flex;
+      justify-content: space-around;
+    }
+
+    &--result {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 300px;
+    }
+
     p {
       color: $primary-text-color;
       font-size: 20px;
-      line-height: 23,5px;
-      margin-bottom: 20px;
+      line-height: 23, 5px;
+      margin-bottom: 40px;
     }
   }
-  
 
-  .question__img {
-    position: absolute;
-    height: 400.67px;
-    left: 32.8%;
-    right: 32.57%;
-    top: 100px;
-    z-index: 0;
-  }
- 
-  
-  
-  .navigation {
+  &__navigation {
     z-index: 1;
     width: 100%;
-    
-    &__sliders {
+
+    &--sliders {
       display: flex;
       justify-content: space-between;
     }
-    
-  }
 
-  .button__section {
-    display: flex;
-    justify-content: space-around;
-  }
-
-  .navigation__button--previous,
-  .navigation__button--next,
-  .navigation__button--result {
-    height: 56px;
-    width: 154px;
-    left: 0%;
-    right: 0%;
-    top: 0.5px;
-    background: #fd8558;
-    border-radius: 0px;
-    color: $primary-text-color;
-    font-size: 15px;
-    &:hover {
+    & .navigation__button {
+      height: 56px;
+      width: 154px;
+      left: 0%;
+      right: 0%;
+      top: 0.5px;
+      background: #be4628c4;
+      border-radius: 0px;
+      color: $primary-text-color;
+      font-size: 15px;
+      &:hover {
         background-color: black;
+      }
+      &--result {
+        display: block;
+        margin: 50px auto;
+        width: auto;
+        padding: 13px 38px;
+      }
     }
-    
   }
-  
-  .navigation__button--result {
-    display: block;
-    margin: 50px auto;
-    width: auto;
-    padding: 13px 38px;
+
+  &__img {
+    position: absolute;
+    height: 400.67px;
+    left: auto;
+    right: auto;
+    top: 100px;
+    z-index: 0;
   }
- 
-  
-  .options {
-    color: $primary-text-color;
+}
+
+.img--topLeft {
+  position: absolute;
+  top: 0;
+}
+
+.img--topRight {
+  position: absolute;
+  top: 13px;
+  right: 130px;
+}
+
+.img--bottomLeft {
+  position: absolute;
+  left: 97px;
+  bottom: 130px;
+}
+
+.img--bottomMiddle {
+  position: absolute;
+  right: 112px;
+  bottom: 402px;
+  width: 34px;
+  height: 34px;
+}
+
+.img--bottomRight {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.preloader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif?20151024034921");
+  background-repeat: no-repeat;
+  background-color: $primary-text-color;
+  background-position: center;
+  visibility: hidden;
+}
+
+@media screen and(max-width: 1200px) {
+  .img--bottomRight {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 50%;
   }
-  
-  
-  
-  
-  
-  .preloader {
+}
+
+@media screen and(max-width: 900px) {
+  .img--topLeft {
     position: absolute;
     top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 9999;
-    background-image: url("https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif?20151024034921");
-    background-repeat: no-repeat;
-    background-color: $primary-text-color;
-    background-position: center;
-    visibility: hidden;
+    width: 25%;
   }
-  
-  
+
+  .img--topRight {
+    position: absolute;
+    top: 13px;
+    right: 30px;
+    width: 15%;
+  }
+
+  .img--bottomLeft {
+    display: none;
+  }
+
+  .img--bottomMiddle {
+    display: none;
+  }
+
+  .img--bottomRight {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 25%;
+  }
+}
+
+@media screen and(max-width: 600px) {
+  .question__section {
+    display: block;
+    margin-bottom: 10px;
+    z-index: 1;
+    text-align: center;
+    margin: auto 30px;
+  }
+  .question__navigation {
+    z-index: 1;
+    width: 100%;
+
+    &--sliders {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      & .navigation__button {
+        height: 56px;
+        width: 80%;
+        left: 0%;
+        right: 0%;
+        top: 0.5px;
+        background: #be4628c4;
+        border-radius: 0px;
+        color: $primary-text-color;
+        font-size: 15px;
+        &:hover {
+          background-color: black;
+        }
+      }
+    }
+
+    .navigation__button--result {
+      margin-top: 0;
+      display: block;
+      width: 80%;
+    }
+  }
+}
+
+@media screen and(max-width: 400px) {
+  .question__section {
+    display: block;
+    margin-bottom: 10px;
+    z-index: 1;
+    text-align: center;
+    margin: auto 30px;
+  }
+  .img--topLeft {
+    display: none;
+  }
+
+  .img--topRight {
+    display: none;
+  }
+
+  .img--bottomLeft {
+    display: none;
+  }
+
+  .img--bottomMiddle {
+    display: none;
+  }
+
+  .img--bottomRight {
+    display: none;
+  }
+}

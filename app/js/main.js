@@ -33,7 +33,7 @@ function showInfo(data) {
   containerAllAnswers = containerAllAnswers.sort();
   console.log(containerAllAnswers);
   let buttonsDiv = document.createElement("div");
-  buttonsDiv.className = "button__section";
+  buttonsDiv.className = "question__section--options";
   buttonsDiv.inner = containerAllAnswers.map((item, index) => {
     let input = document.createElement("input");
     input.className = "btn";
@@ -95,7 +95,7 @@ function nextQuestion() {
   containerAllAnswers = containerAllAnswers.sort();
   console.log(containerAllAnswers);
   let buttonsDiv = document.createElement("div");
-  buttonsDiv.className = "button__section";
+  buttonsDiv.className = "question__section--options";
   buttonsDiv.inner = containerAllAnswers.map((item, index) => {
     let input = document.createElement("input");
     input.className = "btn";
@@ -138,7 +138,7 @@ function previousQuestion() {
   containerAllAnswers = containerAllAnswers.sort();
   console.log(containerAllAnswers);
   let buttonsDiv = document.createElement("div");
-  buttonsDiv.className = "button__section";
+  buttonsDiv.className = "question__section--options";
   buttonsDiv.inner = containerAllAnswers.map((item, index) => {
     let input = document.createElement("input");
     input.className = "btn";
@@ -168,9 +168,13 @@ function checkAnswer() {
     }
   });
   let resultText = document.createElement("div");
-  resultText.className = "result";
-  resultText.innerHTML = `<p>Cool! Correct Answers: ${counter}!</p> `;
-  document.body.append(resultText);
+  resultText.className = "question__section--result";
+  resultText.innerHTML = `<p className = "">Cool! Correct Answers: ${counter}!</p> `;
+  const section = document.querySelector("#question__section");
+  while (section.firstChild) {
+    section.removeChild(section.lastChild);
+  }
+  document.querySelector("#question__section").appendChild(resultText);
 }
 
 // console.log(arrAnswer);

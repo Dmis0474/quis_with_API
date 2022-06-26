@@ -8,41 +8,41 @@
 
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/app/scss/style.css"/>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
+    
   </head>
   <body>
     <body>
       <div class="preloader"></div>
       <div class="question__container">
         <div class="question__section" id="question__section"></div>
-        <div class="navigation">
-          <div class="navigation__sliders">
+        <div class="question__navigation">
+          <div class="question__navigation--sliders">
             <button
-              class="navigation__button--previous"
+              class="question__navigation navigation__button"
               id="prev"
               onclick="previousQuestion()"
             >
               Previous
             </button>
             <button
-              class="navigation__button--next"
+              class="question__navigation navigation__button"
               id="next"
               onclick="nextQuestion()"
             >
               Next
             </button>
           </div>
-          <button class="navigation__button--result" id="get">
+          <button class="question__navigation navigation__button navigation__button--result" id="get">
             Show correct answers!
           </button>
         </div>
         <img class="question__img" src="./img/Frame.png" />
       </div>
+    <img class="img--topLeft" src="./img/left-top-img.png">
+    <img class="img--topRight" src="./img/right-top-img.png">
+    <img class="img--bottomLeft" src="./img/plus.png">
+    <img class="img--bottomMiddle" src="./img/plus.png">
+    <img class="img--bottomRight" src="./img/right-bottom-img.png">
   
     
     
