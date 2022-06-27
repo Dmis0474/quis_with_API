@@ -33,10 +33,10 @@ function showInfo(data) {
   containerAllAnswers = containerAllAnswers.sort();
   console.log(containerAllAnswers);
   let buttonsDiv = document.createElement("div");
-  buttonsDiv.className = "question__section--options";
+  buttonsDiv.className = "question__items";
   buttonsDiv.inner = containerAllAnswers.map((item, index) => {
     let optionsBox = document.createElement("div")
-    optionsBox.className = 'question__section--item'
+    optionsBox.className = 'question__item'
     buttonsDiv.appendChild(optionsBox);
     let input = document.createElement("input");
     let label = document.createElement("label");
@@ -99,10 +99,10 @@ function nextQuestion() {
   containerAllAnswers = containerAllAnswers.sort();
   console.log(containerAllAnswers);
   let buttonsDiv = document.createElement("div");
-  buttonsDiv.className = "question__section--options";
+  buttonsDiv.className = "question__items";
   buttonsDiv.inner = containerAllAnswers.map((item, index) => {
     let optionsBox = document.createElement("div")
-    optionsBox.className = 'question__section--item'
+    optionsBox.className = 'question__item'
     buttonsDiv.appendChild(optionsBox);
     let input = document.createElement("input");
     let label = document.createElement("label");
@@ -146,10 +146,10 @@ function previousQuestion() {
   containerAllAnswers = containerAllAnswers.sort();
   console.log(containerAllAnswers);
   let buttonsDiv = document.createElement("div");
-  buttonsDiv.className = "question__section--options";
+  buttonsDiv.className = "question__items";
   buttonsDiv.inner = containerAllAnswers.map((item, index) => {
     let optionsBox = document.createElement("div")
-    optionsBox.className = 'question__section--item'
+    optionsBox.className = 'question--item'
     buttonsDiv.appendChild(optionsBox);
     let input = document.createElement("input");
     let label = document.createElement("label");

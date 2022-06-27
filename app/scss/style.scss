@@ -15,14 +15,12 @@ body {
 }
 
 .question {
-  &__container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin: 100px auto;
-    max-width: 630px;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 100px auto;
+  max-width: 630px;
 
   &__section {
     display: block;
@@ -30,11 +28,11 @@ body {
     z-index: 1;
     text-align: center;
     height: 300px;
-    &--options {
+    .question__items {
       display: flex;
       justify-content: space-around;
     }
-    &--item {
+    .question__item {
       display: flex;
       flex-direction: row;
       justify-content: start;
@@ -45,13 +43,6 @@ body {
       .btn {
         cursor: pointer;
       }
-    }
-
-    &--result {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      height: 300px;
     }
 
     p {
@@ -66,12 +57,12 @@ body {
     z-index: 1;
     width: 100%;
 
-    &--sliders {
+    .question__buttons {
       display: flex;
       justify-content: space-between;
     }
 
-    &--button {
+    .question__button {
       height: 56px;
       width: 154px;
       left: 0%;
@@ -87,7 +78,7 @@ body {
       }
     }
 
-    &--buttonResult {
+    .question__button--result {
       display: block;
       margin: 50px auto;
       width: auto;
@@ -201,12 +192,12 @@ body {
     z-index: 1;
     width: 100%;
 
-    &--sliders {
+    .question__buttons {
       display: flex;
       flex-direction: column;
       align-items: center;
 
-      & .question__navigation--button {
+      .question__button {
         height: 56px;
         width: 80%;
         left: 0%;
@@ -223,7 +214,7 @@ body {
       }
     }
 
-    .question__navigation--buttonResult {
+    .question__button--result {
       margin-top: 0;
       display: block;
       width: 80%;
@@ -240,7 +231,7 @@ body {
     text-align: center;
     margin: auto 30px;
 
-    &--options {
+    .question__items {
       display: flex;
       flex-direction: column;
       flex-wrap: wrap;
@@ -254,10 +245,9 @@ body {
     z-index: 1;
     width: 100%;
 
-    &--sliders {
+    .question__buttons {
       margin-top: 100px;
-      display: flex;
-      flex-direction: column;
+      display: blok;
       align-items: center;
     }
   }
