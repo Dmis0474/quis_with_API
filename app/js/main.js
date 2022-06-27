@@ -35,7 +35,11 @@ function showInfo(data) {
   let buttonsDiv = document.createElement("div");
   buttonsDiv.className = "question__section--options";
   buttonsDiv.inner = containerAllAnswers.map((item, index) => {
+    let optionsBox = document.createElement("div")
+    optionsBox.className = 'question__section--item'
+    buttonsDiv.appendChild(optionsBox);
     let input = document.createElement("input");
+    let label = document.createElement("label");
     input.className = "btn";
     input.onchange = addAnswer;
     input.addEventListener("onchange", addAnswer, false);
@@ -43,12 +47,12 @@ function showInfo(data) {
     input.id = `${item}id`;
     input.value = `${item}`;
     input.name = "inputOption";
-    buttonsDiv.appendChild(input);
-    let label = document.createElement("label");
+    optionsBox.appendChild(input);
     label.innerHTML = `${item}`;
+    label.setAttribute('for', `${item}id`)
     label.className = "options";
-    label.for = `${item}id`;
-    buttonsDiv.appendChild(label);
+    optionsBox.appendChild(label);
+    
   });
   document.querySelector("#question__section").appendChild(buttonsDiv);
   let arrCorrectAnswer = [];
@@ -97,20 +101,24 @@ function nextQuestion() {
   let buttonsDiv = document.createElement("div");
   buttonsDiv.className = "question__section--options";
   buttonsDiv.inner = containerAllAnswers.map((item, index) => {
+    let optionsBox = document.createElement("div")
+    optionsBox.className = 'question__section--item'
+    buttonsDiv.appendChild(optionsBox);
     let input = document.createElement("input");
+    let label = document.createElement("label");
     input.className = "btn";
     input.onchange = addAnswer;
     input.addEventListener("onchange", addAnswer, false);
     input.type = "radio";
     input.id = `${item}id`;
+    let connect = input.id
     input.value = `${item}`;
     input.name = "inputOption";
-    buttonsDiv.appendChild(input);
-    let label = document.createElement("label");
+    optionsBox.appendChild(input);
     label.innerHTML = `${item}`;
+    label.setAttribute('for', `${item}id`)
     label.className = "options";
-    label.for = `${item}id`;
-    buttonsDiv.appendChild(label);
+    optionsBox.appendChild(label);
     document.querySelector("#question__section").appendChild(buttonsDiv);
   });
 }
@@ -140,20 +148,24 @@ function previousQuestion() {
   let buttonsDiv = document.createElement("div");
   buttonsDiv.className = "question__section--options";
   buttonsDiv.inner = containerAllAnswers.map((item, index) => {
+    let optionsBox = document.createElement("div")
+    optionsBox.className = 'question__section--item'
+    buttonsDiv.appendChild(optionsBox);
     let input = document.createElement("input");
+    let label = document.createElement("label");
     input.className = "btn";
     input.onchange = addAnswer;
     input.addEventListener("onchange", addAnswer, false);
     input.type = "radio";
     input.id = `${item}id`;
+    let connect = input.id
     input.value = `${item}`;
     input.name = "inputOption";
-    buttonsDiv.appendChild(input);
-    let label = document.createElement("label");
+    optionsBox.appendChild(input);
     label.innerHTML = `${item}`;
+    label.setAttribute('for', `${item}id`)
     label.className = "options";
-    label.for = `${item}id`;
-    buttonsDiv.appendChild(label);
+    optionsBox.appendChild(label);
     document.querySelector("#question__section").appendChild(buttonsDiv);
   });
 }

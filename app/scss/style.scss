@@ -34,6 +34,18 @@ body {
       display: flex;
       justify-content: space-around;
     }
+    &--item {
+      display: flex;
+      flex-direction: row;
+      justify-content: start;
+      padding: 10px;
+      max-height: 80px;
+      align-items: center;
+      .options,
+      .btn {
+        cursor: pointer;
+      }
+    }
 
     &--result {
       display: flex;
@@ -59,7 +71,7 @@ body {
       justify-content: space-between;
     }
 
-    & .navigation__button {
+    &--button {
       height: 56px;
       width: 154px;
       left: 0%;
@@ -69,15 +81,17 @@ body {
       border-radius: 0px;
       color: $primary-text-color;
       font-size: 15px;
+      cursor: pointer;
       &:hover {
         background-color: black;
       }
-      &--result {
-        display: block;
-        margin: 50px auto;
-        width: auto;
-        padding: 13px 38px;
-      }
+    }
+
+    &--buttonResult {
+      display: block;
+      margin: 50px auto;
+      width: auto;
+      padding: 10px 30px;
     }
   }
 
@@ -91,35 +105,33 @@ body {
   }
 }
 
-.img--topLeft {
+.background__img {
   position: absolute;
-  top: 0;
-}
+  &--topLeft {
+    top: 0;
+  }
 
-.img--topRight {
-  position: absolute;
-  top: 13px;
-  right: 130px;
-}
+  &--topRight {
+    top: 13px;
+    right: 130px;
+  }
 
-.img--bottomLeft {
-  position: absolute;
-  left: 97px;
-  bottom: 130px;
-}
+  &--bottomLeft {
+    left: 97px;
+    bottom: 130px;
+  }
 
-.img--bottomMiddle {
-  position: absolute;
-  right: 112px;
-  bottom: 402px;
-  width: 34px;
-  height: 34px;
-}
+  &--bottomMiddle {
+    right: 112px;
+    bottom: 402px;
+    width: 34px;
+    height: 34px;
+  }
 
-.img--bottomRight {
-  position: absolute;
-  bottom: 0;
-  right: 0;
+  &--bottomRight {
+    bottom: 0;
+    right: 0;
+  }
 }
 
 .preloader {
@@ -137,41 +149,43 @@ body {
 }
 
 @media screen and(max-width: 1200px) {
-  .img--bottomRight {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 50%;
+  .background__img {
+    &--bottomRight {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 50%;
+    }
   }
 }
 
 @media screen and(max-width: 900px) {
-  .img--topLeft {
+  .background__img {
     position: absolute;
-    top: 0;
-    width: 25%;
-  }
+    &--topLeft {
+      top: 0;
+      width: 25%;
+    }
 
-  .img--topRight {
-    position: absolute;
-    top: 13px;
-    right: 30px;
-    width: 15%;
-  }
+    &--topRight {
+      top: 13px;
+      right: 30px;
+      width: 15%;
+    }
 
-  .img--bottomLeft {
-    display: none;
-  }
+    &--bottomLeft {
+      display: none;
+    }
 
-  .img--bottomMiddle {
-    display: none;
-  }
+    &--bottomMiddle {
+      display: none;
+    }
 
-  .img--bottomRight {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 25%;
+    &--bottomRight {
+      bottom: 0;
+      right: 0;
+      width: 25%;
+    }
   }
 }
 
@@ -192,7 +206,7 @@ body {
       flex-direction: column;
       align-items: center;
 
-      & .navigation__button {
+      & .question__navigation--button {
         height: 56px;
         width: 80%;
         left: 0%;
@@ -202,13 +216,14 @@ body {
         border-radius: 0px;
         color: $primary-text-color;
         font-size: 15px;
+        margin-bottom: 10px;
         &:hover {
           background-color: black;
         }
       }
     }
 
-    .navigation__button--result {
+    .question__navigation--buttonResult {
       margin-top: 0;
       display: block;
       width: 80%;
@@ -218,29 +233,32 @@ body {
 
 @media screen and(max-width: 400px) {
   .question__section {
+    max-width: 380px;
     display: block;
-    margin-bottom: 10px;
+    margin-bottom: 100px;
     z-index: 1;
     text-align: center;
     margin: auto 30px;
+
+    &--options {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+    }
   }
-  .img--topLeft {
+  .background__img {
     display: none;
   }
 
-  .img--topRight {
-    display: none;
-  }
+  .question__navigation {
+    z-index: 1;
+    width: 100%;
 
-  .img--bottomLeft {
-    display: none;
-  }
-
-  .img--bottomMiddle {
-    display: none;
-  }
-
-  .img--bottomRight {
-    display: none;
+    &--sliders {
+      margin-top: 100px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
   }
 }
