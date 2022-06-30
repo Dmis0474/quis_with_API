@@ -1,6 +1,7 @@
 const del = require("del");
 const gulp = require("gulp");
 const scss = require("gulp-sass");
+const min = require("gulp-minify");
 const cache = require("gulp-cache");
 const imagemin = require("gulp-imagemin");
 const browserSync = require("browser-sync");
@@ -21,7 +22,7 @@ gulp.task("sass", () =>
         cascade: true,
       })
     )
-    .pipe(gulp.dest("app/css"))
+
     .pipe(browserSync.reload({ stream: true }))
 );
 
@@ -61,12 +62,19 @@ gulp.task("javascript", () =>
   gulp.src("app/js/**/*.js").pipe(browserSync.reload({ stream: true }))
 );
 
+gulp.task("jsmin", () =>
+  gulp
+    .src(["app/js/main.js"])
+    .pipe(uglify())
+    .pipe(gulp.dest("app/jsmin/min.js"))
+);
+
 gulp.task(
   "watch",
   gulp.parallel("browser-sync", "css-libs", "scripts", () => {
     gulp.watch("app/scss/**/*.scss", gulp.parallel("sass"));
     gulp.watch("app/*.html", gulp.parallel("html"));
-    gulp.watch("app/js/**/*.js", gulp.parallel("javascript"));;
+    gulp.watch("app/js/**/*.js", gulp.parallel("javascript"));
   })
 );
 
@@ -90,7 +98,7 @@ gulp.task("img", () => {
 
 gulp.task(
   "build",
-  gulp.parallel("clean", "img", "sass", "scripts", () => {
+  gulp.parallel("clean", "img", "jsmin", "sass", "scripts", () => {
     const buildCss = gulp
       .src(["app/css/main.css", "app/css/libs.min.css"])
       .pipe(gulp.dest("dist/css"));

@@ -96,34 +96,37 @@ body {
   }
 }
 
-.background__img {
-  position: absolute;
-  &--topLeft {
+  
+  .background-img-topLeft {
+    position: absolute;
     top: 0;
   }
 
-  &--topRight {
+  .background-img-topRight {
+    position: absolute;
     top: 13px;
     right: 130px;
   }
 
-  &--bottomLeft {
+  .background-img-bottomLeft {
+    position: absolute;
     left: 97px;
     bottom: 130px;
   }
 
-  &--bottomMiddle {
+  .background-img-bottomMiddle {
+    position: absolute;
     right: 112px;
     bottom: 402px;
     width: 34px;
     height: 34px;
   }
 
-  &--bottomRight {
+  .background-img-bottomRight {
+    position: absolute;
     bottom: 0;
     right: 0;
   }
-}
 
 .preloader {
   position: absolute;
@@ -151,33 +154,38 @@ body {
 }
 
 @media screen and(max-width: 900px) {
-  .background__img {
-    position: absolute;
-    &--topLeft {
+  
+    
+    .background-img-topLeft {
+      position: absolute;
       top: 0;
       width: 25%;
     }
 
-    &--topRight {
+    .background-img-topRight {
+      position: absolute;
       top: 13px;
       right: 30px;
       width: 15%;
     }
 
-    &--bottomLeft {
+    .background-img--bottomLeft {
+      position: absolute;
       display: none;
     }
 
-    &--bottomMiddle {
+    .background-img--bottomMiddle {
+      position: absolute;
       display: none;
     }
 
-    &--bottomRight {
+    .background-img--bottomRight {
+      position: absolute;
       bottom: 0;
       right: 0;
       width: 25%;
     }
-  }
+  
 }
 
 @media screen and(max-width: 600px) {
