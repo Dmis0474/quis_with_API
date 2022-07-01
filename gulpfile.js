@@ -36,13 +36,13 @@ gulp.task("browser-sync", () => {
   });
 });
 
-gulp.task("scripts", () =>
-  gulp
-    .src(["public/libs/jquery/dist/jquery.min.js"])
-    .pipe(concat("libs.min.js"))
-    .pipe(uglify())
-    .pipe(gulp.dest("public/jsmin"))
-);
+// gulp.task("scripts", () =>
+//   gulp
+//     .src(["public/libs/jquery/dist/jquery.min.js"])
+//     .pipe(concat("libs.min.js"))
+//     .pipe(uglify())
+//     .pipe(gulp.dest("public/jsmin"))
+// );
 
 gulp.task(
   "css-libs",
@@ -55,10 +55,6 @@ gulp.task(
   )
 );
 
-gulp.task("html", () =>
-  gulp.src("public/*.html").pipe(browserSync.reload({ stream: true }))
-);
-
 gulp.task("javascript", () =>
   gulp.src("public/jsmin/**/*.js").pipe(browserSync.reload({ stream: true }))
 );
@@ -68,11 +64,7 @@ gulp.task("jsmin", () =>
 );
 
 
-
-
-
 gulp.task("inject", () => {
-  
   var target = gulp.src("./source/index.html")
   var source = gulp.src(["./public/jsmin/**/*.js", "./public/css/**/*.css"], {read: false})
   target.pipe(inject(source))
@@ -85,17 +77,16 @@ gulp.task(
     "browser-sync",
     "css-libs",
     "jsmin",
-    "scripts",
+    // "scripts",
     "inject",
     () => {
       gulp.watch("source/scss/**/*.scss", gulp.parallel("sass"));
-      gulp.watch("public/*.html", gulp.parallel("html"));
       gulp.watch("source/js/**/*.js", gulp.parallel("javascript"));
     }
   )
 );
 
-gulp.task("clean", () => del.sync("dist"));
+gulp.task("clean", () => del.sync("public"));
 
 gulp.task("img", () => {
   gulp
