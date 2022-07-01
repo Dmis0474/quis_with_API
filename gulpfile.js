@@ -1,11 +1,12 @@
 const del = require("del");
 const gulp = require("gulp");
 const scss = require("gulp-sass");
-const min = require("gulp-minify");
+const minify = require("gulp-minify");
 const cache = require("gulp-cache");
 const imagemin = require("gulp-imagemin");
 const browserSync = require("browser-sync");
 const pngquant = require("imagemin-pngquant");
+const inject = require("gulp-inject");
 
 const concat = require("gulp-concat");
 const rename = require("gulp-rename");
@@ -29,7 +30,7 @@ gulp.task("sass", () =>
 gulp.task("browser-sync", () => {
   browserSync({
     server: {
-      baseDir: "app",
+      baseDir: "public",
     },
     notify: false,
   });
@@ -37,10 +38,10 @@ gulp.task("browser-sync", () => {
 
 gulp.task("scripts", () =>
   gulp
-    .src(["app/libs/jquery/dist/jquery.min.js"])
+    .src(["public/libs/jquery/dist/jquery.min.js"])
     .pipe(concat("libs.min.js"))
     .pipe(uglify())
-    .pipe(gulp.dest("app/js"))
+    .pipe(gulp.dest("public/jsmin"))
 );
 
 gulp.task(
@@ -50,39 +51,55 @@ gulp.task(
       .src("**/css/libs.css", { allowEmpty: true })
       .pipe(cssnano())
       .pipe(rename({ suffix: ".min" }))
-      .pipe(gulp.dest("app/css"))
+      .pipe(gulp.dest("public/css"))
   )
 );
 
 gulp.task("html", () =>
-  gulp.src("app/*.html").pipe(browserSync.reload({ stream: true }))
+  gulp.src("public/*.html").pipe(browserSync.reload({ stream: true }))
 );
 
 gulp.task("javascript", () =>
-  gulp.src("app/js/**/*.js").pipe(browserSync.reload({ stream: true }))
+  gulp.src("public/jsmin/**/*.js").pipe(browserSync.reload({ stream: true }))
 );
 
 gulp.task("jsmin", () =>
-  gulp
-    .src(["app/js/main.js"])
-    .pipe(uglify())
-    .pipe(gulp.dest("app/jsmin/min.js"))
+  gulp.src(["source/js/**/*.js"]).pipe(minify()).pipe(gulp.dest("public/jsmin"))
 );
+
+
+
+
+
+gulp.task("inject", () => {
+  
+  var target = gulp.src("./source/index.html")
+  var source = gulp.src(["./public/jsmin/**/*.js", "./public/css/**/*.css"], {read: false})
+  target.pipe(inject(source))
+  .pipe(gulp.dest("./source.index.html")).pipe(gulp.dest("public"));
+});
 
 gulp.task(
   "watch",
-  gulp.parallel("browser-sync", "css-libs", "scripts", () => {
-    gulp.watch("app/scss/**/*.scss", gulp.parallel("sass"));
-    gulp.watch("app/*.html", gulp.parallel("html"));
-    gulp.watch("app/js/**/*.js", gulp.parallel("javascript"));
-  })
+  gulp.parallel(
+    "browser-sync",
+    "css-libs",
+    "jsmin",
+    "scripts",
+    "inject",
+    () => {
+      gulp.watch("source/scss/**/*.scss", gulp.parallel("sass"));
+      gulp.watch("public/*.html", gulp.parallel("html"));
+      gulp.watch("source/js/**/*.js", gulp.parallel("javascript"));
+    }
+  )
 );
 
 gulp.task("clean", () => del.sync("dist"));
 
 gulp.task("img", () => {
   gulp
-    .src("app/img/**/*")
+    .src("public/img/**/*")
     .pipe(
       cache(
         imagemin({
@@ -95,20 +112,5 @@ gulp.task("img", () => {
     )
     .pipe(gulp.dest("dist/img"));
 });
-
-gulp.task(
-  "build",
-  gulp.parallel("clean", "img", "jsmin", "sass", "scripts", () => {
-    const buildCss = gulp
-      .src(["app/css/main.css", "app/css/libs.min.css"])
-      .pipe(gulp.dest("dist/css"));
-
-    const buildFonts = gulp.src("app/fonts/**/*").pipe(gulp.dest("dist/fonts"));
-
-    const buildJs = gulp.src("app/js/**/*").pipe(gulp.dest("dist/js"));
-
-    const buildHtml = gulp.src("app/*.html").pipe(gulp.dest("dist"));
-  })
-);
 
 gulp.task("clear", (callback) => cache.clearAll());
