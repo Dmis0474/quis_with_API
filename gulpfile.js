@@ -10,7 +10,6 @@ const inject = require("gulp-inject");
 
 const concat = require("gulp-concat");
 const rename = require("gulp-rename");
-const uglify = require("gulp-uglifyjs");
 const cssnano = require("gulp-cssnano");
 const autoprefixer = require("gulp-autoprefixer");
 
