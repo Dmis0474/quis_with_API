@@ -16,15 +16,15 @@ const autoprefixer = require("gulp-autoprefixer");
 
 gulp.task("sass", () =>
   gulp
-    .src("**/scss/**/*.scss")
+    .src("source/scss/**/*.scss")
     .pipe(scss({ outputStyle: "compressed" }))
     .pipe(
       autoprefixer(["last 15 versions", "> 1%", "ie 8", "ie 7", "ie 6"], {
         cascade: true,
       })
     )
-
     .pipe(browserSync.reload({ stream: true }))
+    .pipe(gulp.dest("public/css"))
 );
 
 gulp.task("browser-sync", () => {
@@ -36,13 +36,7 @@ gulp.task("browser-sync", () => {
   });
 });
 
-// gulp.task("scripts", () =>
-//   gulp
-//     .src(["public/libs/jquery/dist/jquery.min.js"])
-//     .pipe(concat("libs.min.js"))
-//     .pipe(uglify())
-//     .pipe(gulp.dest("public/jsmin"))
-// );
+
 
 gulp.task(
   "css-libs",
@@ -65,11 +59,13 @@ gulp.task("jsmin", () =>
 
 
 gulp.task("inject", () => {
-  var target = gulp.src("./source/index.html")
-  var source = gulp.src(["./public/jsmin/**/*.js", "./public/css/**/*.css"], {read: false})
-  target.pipe(inject(source))
-  .pipe(gulp.dest("./source.index.html")).pipe(gulp.dest("public"));
-});
+  var target = gulp.src("source/**/*.html")
+  var source = gulp.src(["public/jsmin/*.js", "public/css/**.css"], { read: false})
+  target.pipe(inject(source,{ ignorePath: 'public'}))
+ .pipe(gulp.dest("public"));
+})
+
+
 
 gulp.task(
   "watch",
@@ -81,12 +77,11 @@ gulp.task(
     "inject",
     () => {
       gulp.watch("source/scss/**/*.scss", gulp.parallel("sass"));
+      gulp.watch("source/*.html", gulp.parallel("inject"));
       gulp.watch("source/js/**/*.js", gulp.parallel("javascript"));
     }
   )
 );
-
-gulp.task("clean", () => del.sync("public"));
 
 gulp.task("img", () => {
   gulp
@@ -103,5 +98,26 @@ gulp.task("img", () => {
     )
     .pipe(gulp.dest("dist/img"));
 });
+
+
+
+
+gulp.task("clean", () => del.sync("public"));
+
+
+gulp.task(
+  "build",
+  gulp.parallel("clean", "img", "jsmin", "sass", () => {
+    const buildCss = gulp
+      .src(["app/css/main.css", "app/css/libs.min.css"])
+      .pipe(gulp.dest("dist/css"));
+
+    const buildFonts = gulp.src("app/fonts/**/*").pipe(gulp.dest("dist/fonts"));
+
+    const buildJs = gulp.src("app/js/**/*").pipe(gulp.dest("dist/js"));
+
+    const buildHtml = gulp.src("app/*.html").pipe(gulp.dest("dist"));
+  })
+);
 
 gulp.task("clear", (callback) => cache.clearAll());
