@@ -54,12 +54,9 @@ gulp.task("sass", () =>
     .pipe(gulp.dest("public/css"))
 );
 
-gulp.task("javascript", () =>
-  gulp.src("public/jsmin/**/*.js").pipe(browserSync.reload({ stream: true }))
-);
 
 gulp.task("jsmin", () =>
-  gulp.src(["source/js/main.js"]).pipe(minify()).pipe(gulp.dest("public/jsmin"))
+  gulp.src(["source/js/main.js"]).pipe(minify()).pipe(browserSync.reload({ stream: true })).pipe(gulp.dest("public/jsmin"))
 );
 
 gulp.task("inject", () => {
@@ -95,7 +92,6 @@ gulp.task(
     "vendor-styles",
     "vendor-scripts",
     "sass",
-    "javascript",
     "jsmin",
     "inject",
     "browser-sync",
@@ -106,7 +102,6 @@ gulp.task(
       gulp.watch("source/css/**.css", gulp.parallel("vendor-styles"));
       gulp.watch("source/libs/**/*.js", gulp.parallel("vendor-scripts"));
       gulp.watch("source/scss/**/*.scss", gulp.parallel("sass"));
-      gulp.watch("source/js/**/*.js", gulp.parallel("javascript")); 
       gulp.watch("source/js/main.js", gulp.parallel("jsmin"));
       gulp.watch("source/*.html", gulp.parallel("inject"));
     }
@@ -123,7 +118,6 @@ gulp.task(
     "vendor-styles",
     "vendor-scripts",
     "sass",
-    "javascript",
     "jsmin",
     "inject",
     "browser-sync",
