@@ -3,7 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,400;0,500;0,600;0,700;1,100&display=swap"
+      rel="stylesheet"
+    />
     <title>Quis with Api</title>
 
     <!-- inject:css -->
@@ -11,43 +16,38 @@
 
     <!-- <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/app/scss/style.css"/> -->
-    
   </head>
   <body>
-    <body>
-      <div class="preloader"></div>
-      <div class="question"> <!-- блок -->
-        <div class="question__section" id="question__section"></div>
-        <div class="question__navigation">
-          <div class="question__buttons">
-            <button
-              class="question__button"
-              id="prev"
-              onclick="previousQuestion()"
-            >
-              Previous
-            </button>
-            <button
-              class="question__button"
-              id="next"
-              onclick="nextQuestion()"
-            >
-              Next
-            </button>
-          </div>
-          <button class="question__button question__button--result" id="get">
-            Show correct answers!
-          </button>
-        </div>
-        <img class="question__img" src="./img/Frame.png" />
+    <header class="header">
+      <div class="header__logo">
+        <img src="img/logo_air.svg" alt="logo" class="header__img" />
       </div>
-    <img class="background-img-topLeft" src="./img/left-top-img.png">
-    <img class="background-img-topRight" src="./img/right-top-img.png">
-    <img class="background-img-bottomLeft" src="./img/plus.png">
-    <img class="background-img-bottomMiddle" src="./img/plus.png">
-    <img class="background-img-bottomRight" src="./img/right-bottom-img.png">
-  
-    
+
+      <div class="header__menu">
+        <a class="header__item">Home</a>
+        <a class="header__item">Booking</a>
+        <a class="header__item">Private Jet</a>
+        <a class="header__item">Specification</a>
+        <a class="header__item">Luxury Charters</a>
+        <a class="header__item">Membership</a>
+      </div>
+
+      <div class="header__form">
+        <p class="form__description">Register</p>
+        <button class="button form__button">Sign in</button>
+      </div>
+      <img src="img/header_bg.png" alt="" class="header__background">
+    </header>
+    <section class="advertisement">
+      <div class="advertisement__box">
+        <p class="advertisement__header">Enjoy Reserved Overhead bin space</p>
+        <a href="" class="advertisement__link">Explore Now</a>
+      </div>
+      <div class="advertisement__img">
+        <img src="img/adver_img.png" alt="">
+      </div>
+    </section>
+
     <!-- inject:js -->
     <!-- endinject -->
     <!-- <script src="jsmin/main.js"></script>
