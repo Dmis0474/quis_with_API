@@ -8,12 +8,22 @@ body {
   font-weight: 500;
 }
 
+span {
+  color: #656293;
+  font-weight: 700;
+}
+
+.content {
+  display: block;
+  margin: 0px 165px;
+  max-width: 1590px;
+}
+
 .header {
   display: flex;
   justify-content: space-around;
   flex-direction: row;
-  margin: 38px 165px 0 165px;
-  
+  margin-top: 38px;
 
   &__logo {
   }
@@ -37,16 +47,16 @@ body {
     align-items: center;
   }
 
-  &__background{
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 751px;
-  width: auto;
+  &__background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 751px;
+    width: auto;
   }
 }
 
-.form {
+.header {
   &__button {
     width: 93px;
     height: 31px;
@@ -58,13 +68,44 @@ body {
   border-radius: 5px;
 }
 
-
 .advertisement {
-  margin: 52px 165px 0px 165px;
+  margin-top: 52px;
   display: flex;
   justify-content: space-between;
 
-  &__box{
-
+  &__discription {
+    font-size: 66px;
+    line-height: 77px;
+    font-weight: 400;
   }
+  &__link {
+    display: flex;
+    justify-content: start;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 48px;
+  }
+
+  &__item {
+    color: #151515;
+    text-decoration: none;
+    margin-right: 9px;
+  }
+
+  &__arrow {
+    width: 16px;
+    height: 16px;
+    color: #151515;
+  }
+}
+
+.form {
+  width: 1110px;
+  height: 266px;
+  border-radius: 12px;
+  background-color: #fff;
+  display: block;
+  margin: 0 auto;
+  z-index: 1;
+  position: absolute;
 }

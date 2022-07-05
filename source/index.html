@@ -18,35 +18,86 @@
     <link rel="stylesheet" href="css/app/scss/style.css"/> -->
   </head>
   <body>
-    <header class="header">
-      <div class="header__logo">
-        <img src="img/logo_air.svg" alt="logo" class="header__img" />
-      </div>
+    <container class="content">
+      <header class="header">
+        <div class="header__logo">
+          <img src="img/logo_air.svg" alt="logo" class="header__img" />
+        </div>
 
-      <div class="header__menu">
-        <a class="header__item">Home</a>
-        <a class="header__item">Booking</a>
-        <a class="header__item">Private Jet</a>
-        <a class="header__item">Specification</a>
-        <a class="header__item">Luxury Charters</a>
-        <a class="header__item">Membership</a>
-      </div>
+        <div class="header__menu">
+          <a class="header__item">Home</a>
+          <a class="header__item">Booking</a>
+          <a class="header__item">Private Jet</a>
+          <a class="header__item">Specification</a>
+          <a class="header__item">Luxury Charters</a>
+          <a class="header__item">Membership</a>
+        </div>
 
-      <div class="header__form">
-        <p class="form__description">Register</p>
+        <div class="header__form">
+          <a class="header__description">Register</a>
+          <button class="button header__button">Sign in</button>
+        </div>
+        <img src="img/header_bg.png" alt="" class="header__background" />
+      </header>
+    </container>
+    <container class="content">
+      <section class="advertisement">
+        <div class="advertisement__box">
+          <h1 class="advertisement__discription">
+            Enjoy <span>RESERVED</span> Overhead bin space
+          </h1>
+          <div class="advertisement__link">
+            <a href="" class="advertisement__item">Explore Now</a>
+            <img
+              src="./img/arrow-right 1.png"
+              alt="arrow"
+              class="arrow advertisement__arrow"
+            />
+          </div>
+        </div>
+        <div class="advertisement__img">
+          <img src="img/adver_img.png" alt="" />
+        </div>
+      </section>
+    </container>
+    <container class="content">
+      <div class="form">
+        <div class="form__navigation">
+          <a href="" class="navigation__item">Round Trip</a>
+          <a href="" class="navigation__item">Flight Type</a>
+          <a href="" class="navigation__item">Person</a>
+        </div>
+        <div class="form__box">
+          <div class="form__direction form__direction--from">
+            <p class="diretion__item">FROM</p>
+            <h5 class="direction__header">LAX</h5>
+            <p class="diretion__item">LOS ANGELES INTL ARPT,LOS ANGELES</p>
+          </div>
+          <img src="./img/direction__img.png" alt="" class="direction__img" />
+          <div class="form__direction form__direction--to">
+            <p class="diretion__item">TO</p>
+            <h5 class="direction__header">MIA</h5>
+            <p class="diretion__item">MIAMI INTL,MIAMI</p>
+          </div>
+          <div class="form__direction form__direction--result">
+            <div class="direction__box direction__box--from">
+              <p class="diretion__item">FROM</p>
+              <h5 class="direction__header">LAX</h5>
+              <p class="diretion__item">LOS ANGELES INTL ARPT,LOS ANGELES</p>
+            </div>
+            <img src="./img/calendar.png" alt="" class="direction__icon" />
+            <div class="direction__box direction__box--to">
+              <p class="diretion__item">TO</p>
+              <h5 class="direction__header">MIA</h5>
+              <p class="diretion__item">MIAMI INTL,MIAMI</p>
+            </div>
+            <img src="./img/calendar.png" alt="" class="direction__icon" />
+          </div>
+        </div>
+        <a href="" class="form__link">Add Requirements</a>
         <button class="button form__button">Sign in</button>
       </div>
-      <img src="img/header_bg.png" alt="" class="header__background">
-    </header>
-    <section class="advertisement">
-      <div class="advertisement__box">
-        <p class="advertisement__header">Enjoy Reserved Overhead bin space</p>
-        <a href="" class="advertisement__link">Explore Now</a>
-      </div>
-      <div class="advertisement__img">
-        <img src="img/adver_img.png" alt="">
-      </div>
-    </section>
+    </container>
 
     <!-- inject:js -->
     <!-- endinject -->
